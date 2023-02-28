@@ -15,6 +15,9 @@ Example: diutils new -a myserver -ip 123.123.123 -p 22 -l root -pass qwerty
 Connect: diutils -ssh -a <ALIAS>
 Example: diutils -ssh -a myserver
 
+Delete: diutils -delete -a <ALIAS>
+Example: diutils -delete -a myserver
+
 List: diutils -list
 ```
 
