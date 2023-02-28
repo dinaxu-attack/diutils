@@ -21,6 +21,7 @@ func main() {
 
 	newopt := flag.Bool("new", false, "")
 	sshopt := flag.Bool("ssh", false, "")
+	deletee := flag.Bool("delete", false, "")
 	slist := flag.Bool("list", false, "")
 
 	alias := flag.String("a", "", "")
@@ -30,13 +31,19 @@ func main() {
 	login := flag.String("l", "", "")
 	flag.Parse()
 
-	if !*newopt && !*sshopt && !*slist {
+	if !*newopt && !*sshopt && !*slist && !*deletee {
 		help()
 	}
 
 	distro := internal.DetectOS()
 	internal.InstallPkg(distro)
 
+	if *deletee {
+		if *alias == "" {
+			help()
+		}
+		servers.DeleteServer(*alias)
+	}
 	if *slist {
 		servers.ServersList()
 	}
@@ -56,9 +63,7 @@ func main() {
 
 }
 
-
 func help() {
-	fmt.Println("\n" + `Save: diutils new -a <ALIAS> -ip <IP> -p <PORT (optional)>  -l <LOGIN> -pass <PASSWORD>` + "\n" + `Example: diutils new -a myserver -ip 123.123.123 -p 22 -l root -pass qwerty` + "\n\n" + `Connect: diutils -ssh -a <ALIAS>` + "\nExample: diutils -ssh -a myserver" + "\n\nList: diutils -list")
+	fmt.Println("\n" + `Save: diutils new -a <ALIAS> -ip <IP> -p <PORT (optional)>  -l <LOGIN> -pass <PASSWORD>` + "\n" + `Example: diutils new -a myserver -ip 123.123.123 -p 22 -l root -pass qwerty` + "\n\n" + `Connect: diutils -ssh -a <ALIAS>` + "\nExample: diutils -ssh -a myserver" + "\n\n" + "Delete: diutils -delete -a <ALIAS>\nExample: diutils -delete -a myserver" + "\n\nList: diutils -list")
 	os.Exit(0)
 }
-
