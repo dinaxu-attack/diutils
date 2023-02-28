@@ -56,7 +56,9 @@ func main() {
 
 }
 
+
 func help() {
-	fmt.Println("\n" + `Save: diutil new -a <ALIAS> -ip <IP> -p <PORT (optional)>  -l <LOGIN> -pass <PASSWORD>` + "\n" + `Example: diutil new -a myserver -ip 123.123.123 -p 22 -l root -pass qwerty` + "\n\n" + `Connect: diutil -ssh -a <ALIAS>` + "\nExample: diutil -ssh -a myserver" + "\n\nList: diutil -list")
+	fmt.Println("\n" + `Save: diutils new -a <ALIAS> -ip <IP> -p <PORT (optional)>  -l <LOGIN> -pass <PASSWORD>` + "\n" + `Example: diutils new -a myserver -ip 123.123.123 -p 22 -l root -pass qwerty` + "\n\n" + `Connect: diutils -ssh -a <ALIAS>` + "\nExample: diutils -ssh -a myserver" + "\n\nList: diutils -list")
 	os.Exit(0)
 }
+
